@@ -29,14 +29,15 @@ python3 -m venv env
 #### 4. Install `uv` untuk menjalankan aplikasi
 
 ```bash
-./env/bin/pip install uv
+./env/bin/pip install uvicorn httpx dotenv fastapi
 ```
 
 Contoh output:
 ```
-Collecting uv
-  Downloading uv-0.8.3...
-Successfully installed uv-0.8.3
+Collecting uvicorn
+  Using cached uvicorn-0.35.0-py3-none-any.whl (66 kB)
+Installing collected packages: click, uvicorn
+Successfully installed click-8.1.8 uvicorn-0.35.0
 ```
 
 #### 5. Salin file `.env-example` menjadi `.env`
@@ -94,7 +95,7 @@ Connections                   ttl     opn     rt1     rt5     p50     p90
 #### 8. Jalankan aplikasi pada terminal yang baru
 
 ```bash
-./env/bin/uv run main.py
+./env/bin/python main.py
 ```
 
 Contoh output terminal:
