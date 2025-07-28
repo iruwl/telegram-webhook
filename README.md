@@ -1,0 +1,146 @@
+# TELEGRAM WEBHOOK
+
+Skrip **Telegram Webhook** ini merupakan listener sederhana untuk menerima pesan dari Bot Telegram, kemudian meneruskan pesan tersebut ke Webhook N8N. Cocok digunakan untuk integrasi otomatis seperti notifikasi, workflow N8N, atau sistem chatbot sederhana.
+
+---
+
+## 🔧 Instalasi & Menjalankan
+
+Ikuti langkah-langkah berikut untuk menyiapkan dan menjalankan proyek:
+
+#### 1. Clone repository ini
+
+```bash
+git clone https://github.com/iruwl/telegram-webhook
+```
+
+#### 2. Masuk ke direktori proyek
+
+```bash
+cd telegram-webhook
+```
+
+#### 3. Buat Python virtual environment
+
+```bash
+python3 -m venv env
+```
+
+#### 4. Install `uv` untuk menjalankan aplikasi
+
+```bash
+./env/bin/pip install uv
+```
+
+Contoh output:
+```
+Collecting uv
+  Downloading uv-0.8.3...
+Successfully installed uv-0.8.3
+```
+
+#### 5. Salin file `.env-example` menjadi `.env`
+
+```bash
+cp .env-example .env
+```
+
+#### 6. Edit file `.env` sesuai kebutuhan
+
+```bash
+vi .env
+```
+
+Contoh isi `.env`:
+
+```env
+# Port yang digunakan oleh aplikasi
+PORT="8000"
+
+# Token Bot Telegram
+TG_BOT_TOKEN="999999999:SDMk-345msdfl mlk435mfdf_2sdklam$sd"
+
+# URL webhook N8N (gunakan yang test/development)
+N8N_WEBHOOK_URL="http://localhost:5678/webhook-test/7091c9ff-4e4d-4400-8dff-e03f77a2ba0e"
+
+# Mode aplikasi: PROD atau TEST
+N8N_MODE="PROD"
+```
+
+#### 7. Jalankan Ngrok untuk expose server lokal ke publik
+
+```bash
+ngrok http http://localhost:8000
+```
+
+Contoh output terminal:
+
+```
+ngrok                                                                                                                 (Ctrl+C to quit)
+
+🫶 Using ngrok for OSS? Request a community license: https://ngrok.com/r/oss
+
+Session Status                online
+Account                       irul (Plan: Free)
+Version                       3.25.0
+Region                        Asia Pacific (ap)
+Web Interface                 http://127.0.0.1:4040
+Forwarding                    https://ae87e0781a4d.ngrok-free.app -> http://localhost:8000
+
+Connections                   ttl     opn     rt1     rt5     p50     p90
+                              0       0       0.00    0.00    0.00    0.00
+```
+
+#### 8. Jalankan aplikasi pada terminal yang baru
+
+```bash
+./env/bin/uv run main.py
+```
+
+Contoh output terminal:
+
+```
+INFO 🚀 Starting server...
+INFO ✔ Ngrok URL: https://ae87e0781a4d.ngrok-free.app
+INFO ✔ Telegram webhook set to https://ae87e0781a4d.ngrok-free.app/webhook
+INFO Application startup complete.
+```
+
+#### 9. Webhook Siap Digunakan
+
+Jika tidak ada error pada log, maka aplikasi sudah siap menerima pesan dari Telegram dan meneruskannya ke N8N.
+
+Contoh log ketika menerima pesan:
+
+```
+INFO ↪ Received data from Telegram: {'update_id': 2, 'message': {'text': 'hallo!'}}
+INFO ✔ Message successfully sent to N8N
+```
+
+---
+
+## 📌 Catatan
+
+- Pastikan token bot Telegram kamu valid.
+- Jangan lupa menyesuaikan URL N8N yang aktif.
+- Jika menggunakan hosting atau server publik, kamu bisa skip penggunaan ngrok.
+
+---
+
+## 🛠 Teknologi yang Digunakan
+
+- Python 3.10+
+- [uv](https://github.com/astral-sh/uv) (Fast Python web runner)
+- Ngrok (opsional, untuk development)
+
+---
+
+## 📬 Lisensi
+
+MIT License
+
+---
+
+## 🙋‍♂️ Sumber Asli
+
+Ref: https://github.com/sjanaX01/n8n-Telegram-Bot-Webhook
