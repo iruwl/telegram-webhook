@@ -136,13 +136,20 @@ git clone https://github.com/iruwl/telegram-webhook
 cd telegram-webhook
 ```
 
-#### 3. Build dan Jalankan
+#### 3. Salin file `.env-example` menjadi `.env` dan edit sesuai kebutuhan
+
+```bash
+cp .env-example .env
+vi .env
+```
+
+#### 4. Build dan Jalankan
 
 ```
 docker-compose up --build -d
 ```
 
-#### 4. Cek log container
+#### 5. Cek log container
 
 ```
 docker logs -f telegram-webhook
