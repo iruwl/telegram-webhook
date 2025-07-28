@@ -14,4 +14,7 @@ COPY . .
 RUN pip install uvicorn httpx dotenv fastapi
 
 # Jalankan script
-CMD ["python", "main.py"]
+COPY start.sh /app/start.sh
+RUN chmod +x /app/start.sh
+
+CMD ["./start.sh"]

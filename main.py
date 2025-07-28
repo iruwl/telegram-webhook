@@ -1,9 +1,8 @@
+import httpx
 import logging.config
 import os
-from contextlib import asynccontextmanager
-
-import httpx
 import uvicorn
+from contextlib import asynccontextmanager
 from dotenv import load_dotenv
 from fastapi import FastAPI, Request
 from fastapi.responses import PlainTextResponse
@@ -17,12 +16,17 @@ PORT = int(os.getenv("PORT", 8000))
 TG_BOT_TOKEN = os.getenv("TG_BOT_TOKEN")
 N8N_WEBHOOK_URL = os.getenv("N8N_WEBHOOK_URL")
 N8N_MODE = os.getenv("N8N_MODE")
+RUN_MODE = os.getenv("RUN_MODE")
+
+NGROK_HOST = "ngrok:4040" if RUN_MODE.lower() == "docker" else "127.0.0.1:4040"
+WEBHOOK_URL = N8N_WEBHOOK_URL if N8N_MODE.lower() == "test" else N8N_WEBHOOK_URL.replace("-test/", "/")
 
 
 async def check_ngrok():
     try:
         async with httpx.AsyncClient() as client:
-            resp = await client.get("http://127.0.0.1:4040/api/tunnels")
+            url = f"http://{NGROK_HOST}/api/tunnels"
+            resp = await client.get(url)
             resp.raise_for_status()
             tunnels = resp.json().get("tunnels", [])
             if tunnels:
@@ -67,8 +71,7 @@ app = FastAPI(lifespan=lifespan)
 async def pass_data_to_n8n(data: dict) -> None:
     try:
         async with httpx.AsyncClient() as client:
-            url = N8N_WEBHOOK_URL if N8N_MODE.lower() != "prod" else N8N_WEBHOOK_URL.replace("-test/", "/")
-            resp = await client.post(url, json=data)
+            resp = await client.post(WEBHOOK_URL, json=data)
             resp.raise_for_status()
             log.info("✔ Message successfully sent to N8N")
     except httpx.HTTPStatusError as e:
