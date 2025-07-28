@@ -26,7 +26,7 @@ cd telegram-webhook
 python3 -m venv env
 ```
 
-#### 4. Install `uv` untuk menjalankan aplikasi
+#### 4. Install paket yang dibutuhkan untuk menjalankan aplikasi
 
 ```bash
 ./env/bin/pip install uvicorn httpx dotenv fastapi
@@ -132,7 +132,6 @@ INFO ✔ Message successfully sent to N8N
 
 - Ngrok
 - Python 3.10+
-- [uv](https://github.com/astral-sh/uv) (Fast Python web runner)
 
 ---
 
