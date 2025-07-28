@@ -146,7 +146,13 @@ vi .env
 #### 4. Build dan Jalankan
 
 ```
-docker-compose up --build -d
+docker compose up -d
+```
+
+atau
+
+```
+docker compose up --build -d
 ```
 
 #### 5. Cek log container

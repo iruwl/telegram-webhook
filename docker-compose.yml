@@ -12,7 +12,7 @@ services:
     command: ["./start.sh"]
 
   ngrok:
-    image: ngrok/ngrok:latest
+    image: ngrok/ngrok:alpine
     container_name: ngrok
     ports:
       - 4040:4040
