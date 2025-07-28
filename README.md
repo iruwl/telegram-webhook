@@ -123,15 +123,15 @@ INFO ✔ Message successfully sent to N8N
 
 - Pastikan token bot Telegram kamu valid.
 - Jangan lupa menyesuaikan URL N8N yang aktif.
-- Jika menggunakan hosting atau server publik, kamu bisa skip penggunaan ngrok.
+- Membutuhkan ngrok untuk ekspose url ke public.
 
 ---
 
 ## 🛠 Teknologi yang Digunakan
 
+- Ngrok
 - Python 3.10+
 - [uv](https://github.com/astral-sh/uv) (Fast Python web runner)
-- Ngrok (opsional, untuk development)
 
 ---
 
