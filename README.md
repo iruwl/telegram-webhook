@@ -68,7 +68,7 @@ N8N_WEBHOOK_URL="http://localhost:5678/webhook-test/7091c9ff-4e4d-4400-8dff-e03f
 N8N_MODE="PROD"
 ```
 
-#### 7. Jalankan Ngrok untuk expose server lokal ke publik
+#### 7. Jalankan Ngrok untuk expose url lokal ke publik
 
 ```bash
 ngrok http http://localhost:8000
@@ -120,11 +120,42 @@ INFO ✔ Message successfully sent to N8N
 
 ---
 
+## 🐳 Jalankan dengan Docker
+
+Jika kamu ingin menjalankan project ini menggunakan Docker, ikuti langkah berikut:
+
+#### 1. Clone repository ini
+
+```bash
+git clone https://github.com/iruwl/telegram-webhook
+```
+
+#### 2. Masuk ke direktori proyek
+
+```bash
+cd telegram-webhook
+```
+
+#### 3. Build dan Jalankan
+
+```
+docker-compose up --build -d
+```
+
+#### 4. Cek log container
+
+```
+docker logs -f telegram-webhook
+```
+
+---
+
 ## 📌 Catatan
 
 - Pastikan token bot Telegram kamu valid.
 - Jangan lupa menyesuaikan URL N8N yang aktif.
-- Membutuhkan ngrok untuk ekspose url ke public.
+- Membutuhkan ngrok untuk ekspose url lokal ke publik.
+- Jika menggunakan docker, pastikan port yang digunakan sesuai dengan konfigurasi .env.
 
 ---
 
