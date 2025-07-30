@@ -87,6 +87,11 @@ async def telegram_webhook(request: Request):
     await pass_data_to_n8n(data)
 
 
+@app.get("/health")
+async def health():
+    return {"status": "ok"}
+
+
 @app.get("/", response_class=PlainTextResponse)
 async def root():
     return "Telegram Webhook is running"

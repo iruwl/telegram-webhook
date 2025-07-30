@@ -17,4 +17,7 @@ RUN pip install uvicorn httpx dotenv fastapi
 COPY start.sh /app/start.sh
 RUN chmod +x /app/start.sh
 
+HEALTHCHECK --interval=30s --timeout=3s --retries=3 \
+  CMD curl -f http://localhost:8000/health || exit 1
+
 CMD ["./start.sh"]
